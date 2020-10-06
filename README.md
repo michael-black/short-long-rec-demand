@@ -5,3 +5,19 @@ This repository allows users to reproduce the results of Black and Woodward (Wor
 Please note this repo does not contain any data. Data are available upon request; please direct data requests to [black.michael@tamu.edu](mailto:black.michael@tamu.edu).
 
 Conditional on receiving the data files, every table and figure can be replicated.
+
+We suggest the following folder structure for your replication:
+| Level 1 Folders | Level 2 Folders | Level 3 Files |
+|--- | --- | --- | 
+| Build | Input | (All data files housed here) |
+|  | Output | (All datasets built appear here) |
+|  | Temp | (Temporary folder) |
+|  | Code | Create Survey Data.do |
+|  | | Get Income Data.do | 
+|  | | Install OSRMTIME.do |
+|  | | Calculate Travel Distances.do |
+|  | | Create Fishing Locations.do |
+|  | | Create Water Quality Data.do |
+|  | | Specify Water Quality Data.do |
+|  | | Adding USGS Water Quality data.R |
+|  | | Create final dataset.do |
