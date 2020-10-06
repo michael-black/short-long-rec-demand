@@ -1,0 +1,433 @@
+/*
+Michael Black
+January 2018
+Updated June 2018
+
+In this Do-file, I create FishLoc and fishgps datasets.
+*/
+clear all
+cls
+local input_path "/Volumes/GoogleDrive/My Drive/Research/RecDemandWQ/Build/Input"
+local temp_path "/Volumes/GoogleDrive/My Drive/Research/RecDemandWQ/Build/Temp"
+local output_path "/Volumes/GoogleDrive/My Drive/Research/RecDemandWQ/Build/Output"
+
+import delimited "`input_path'/Total Fishing Locations Comma Sep.csv", encoding(ISO-8859-1)
+
+// Rename locations
+sort locationname
+replace	locationname	=	"Amistad"	if 	locationname	==	"Amistadlake"
+replace	locationname	=	"Amistad"	if 	locationname	==	"Amistaid"
+replace	locationname	=	"Amistad"	if 	locationname	==	"Amistadresevoir"
+replace	locationname	=	"Amoncarter"	if 	locationname	==	"Amongcarter"
+replace	locationname	=	"Angelinariver"	if 	locationname	==	"Angelinasamrayburn"
+replace	locationname	=	"Amoncarter"	if 	locationname	==	"Anongcarter"
+replace	locationname	=	"Aquillalake"	if 	locationname	==	"Aquilla"
+replace	locationname	=	"Portanoaraspass"	if 	locationname	==	"Aransas"
+replace	locationname	=	"Portanoaraspass"	if 	locationname	==	"Aransasbay"
+replace	locationname	=	"Portanoaraspass"	if 	locationname	==	"Aransaspass"
+replace	locationname	=	"Portanoaraspass"	if 	locationname	==	"Arkansaspass"
+replace	locationname	=	"Arlington"	if 	locationname	==	"Arlingtonlake"
+replace	locationname	=	"Amoncarter"	if 	locationname	==	"Armoncarterlake"
+replace	locationname	=	"Portanoaraspass"	if 	locationname	==	"Aroundaransaspass"
+replace	locationname	=	"Arroyocity"	if 	locationname	==	"Arroyo"
+replace	locationname	=	"Athenslake"	if 	locationname	==	"Athens"
+replace	locationname	=	"Baffin"	if 	locationname	==	"Baffinbay"
+replace	locationname	=	"Baffin"	if 	locationname	==	"Baffonbay"
+replace	locationname	=	"Bardwelllake"	if 	locationname	==	"Bardwellorpurtiscreeklake"
+replace	locationname	=	"Bastrop"	if 	locationname	==	"Bastroplake"
+replace	locationname	=	"Belton"	if 	locationname	==	"Beltonlake"
+replace	locationname	=	"Benbrook"	if 	locationname	==	"Benbrooklake"
+replace	locationname	=	"Blanco"	if 	locationname	==	"Blancoriver"
+replace	locationname	=	"Bocachica"	if 	locationname	==	"Bocachicabeach"
+replace	locationname	=	"Baffin"	if 	locationname	==	"Boffin"
+replace	locationname	=	"Bonham"	if 	locationname	==	"Bonhamstatepark"
+replace	locationname	=	"Bosque"	if 	locationname	==	"Bosqueriver"
+replace	locationname	=	"Bosque"	if 	locationname	==	"Bosqueriverabovelakewaco"
+replace	locationname	=	"Brady"	if 	locationname	==	"Bradylake"
+replace	locationname	=	"Brady"	if 	locationname	==	"Brandybranch"
+replace	locationname	=	"Brady"	if 	locationname	==	"Brandybranchres"
+replace	locationname	=	"Brady"	if 	locationname	==	"Bradyresevoir"
+replace	locationname	=	"Braunig"	if 	locationname	==	"Brauniglake"
+replace	locationname	=	"Braunig"	if 	locationname	==	"Rrauning"
+replace	locationname	=	"Brazosriver"	if 	locationname	==	"Brazosriver"
+replace	locationname	=	"Brazosriver"	if 	locationname	==	"Brazos"
+replace	locationname	=	"Brazosriver"	if 	locationname	==	"Brazosrivergranburylakeweatherfodlake"
+replace	locationname	=	"Brazosriver"	if 	locationname	==	"Brazosriverwhitney"
+replace	locationname	=	"Bridgeport"	if 	locationname	==	"Bridgport"
+replace	locationname	=	"Brownwood"	if 	locationname	==	"Brownwoodlake"
+replace	locationname	=	"Brushycreekhuttotx"	if 	locationname	==	"Brushycreekhuttotx"
+replace	locationname	=	"Brushycreekhuttotx"	if 	locationname	==	"Brushycreek"
+replace	locationname	=	"Lakebryan"	if 	locationname	==	"Bryan"
+replace	locationname	=	"Buchanan"	if 	locationname	==	"Buchananlake"
+replace	locationname	=	"Buchanan"	if 	locationname	==	"Buchannan"
+replace	locationname	=	"Buchanan"	if 	locationname	==	"Buchanon"
+replace	locationname	=	"Bueochesatateponklake"	if 	locationname	==	"Buescherlake"
+replace	locationname	=	"Bueochesatateponklake"	if 	locationname	==	"Buescherpark"
+replace	locationname	=	"Bueochesatateponklake"	if 	locationname	==	"Buesherandriver"
+replace	locationname	=	"Bueochesatateponklake"	if 	locationname	==	"Buescherstatepark"
+replace	locationname	=	"Buffalobayou"	if 	locationname	==	"Buffalocampbayou"
+replace	locationname	=	"Caddo"	if 	locationname	==	"Caddolake"
+replace	locationname	=	"Caddo"	if 	locationname	==	"Caddolakestatepark"
+replace	locationname	=	"Caddo"	if 	locationname	==	"Caddonatlgrasslands"
+replace	locationname	=	"Calavareaslake"	if 	locationname	==	"Calaveras"
+replace	locationname	=	"Calavareaslake"	if 	locationname	==	"Calaveraslake"
+replace	locationname	=	"Canyondamoncanyonlake"	if 	locationname	==	"Canyon"
+replace	locationname	=	"Canyondamoncanyonlake"	if 	locationname	==	"Canyondam"
+replace	locationname	=	"Canyondamoncanyonlake"	if 	locationname	==	"Canyondamoncanyonlake"
+replace	locationname	=	"Canyondamoncanyonlake"	if 	locationname	==	"Canyonlake"
+replace	locationname	=	"Cedarcreek"	if 	locationname	==	"Cedarcreekandbardwell"
+replace	locationname	=	"Cedarcreek"	if 	locationname	==	"Cedarcreeklake"
+replace	locationname	=	"Cedarcreek"	if 	locationname	==	"Cedarcreekreservoir"
+replace	locationname	=	"Champion"	if 	locationname	==	"Championcreek"
+replace	locationname	=	"Champion"	if 	locationname	==	"Championcreekresevoir"
+replace	locationname	=	"Choke"	if 	locationname	==	"Choc"
+replace	locationname	=	"Choke"	if 	locationname	==	"Chokecanyon"
+replace	locationname	=	"Choke"	if 	locationname	==	"Chokecanyonreservoir"
+replace	locationname	=	"Citylake"	if 	locationname	==	"Citylakemarlin"
+replace	locationname	=	"Clearlake"	if 	locationname	==	"Clearlakearea"
+replace	locationname	=	"Coffeemilllake"	if 	locationname	==	"Coffeemill"
+replace	locationname	=	"Coletocreek"	if 	locationname	==	"Coletocreekreservoir"
+replace	locationname	=	"Coletocreek"	if 	locationname	==	"Coletolake"
+replace	locationname	=	"Coletocreek"	if 	locationname	==	"Coletoresivor"
+replace	locationname	=	"Coletocreek"	if 	locationname	==	"Coletocreekresevoir"
+replace	locationname	=	"Colorado"	if 	locationname	==	"Coloradoriver"
+replace	locationname	=	"Coloradobend"	if 	locationname	==	"Coloradobendstatepark"
+replace	locationname	=	"Comacriver"	if 	locationname	==	"Comelriver"
+replace	locationname	=	"Conroe"	if 	locationname	==	"Conrof"
+replace	locationname	=	"Cooper"	if 	locationname	==	"Cooperlake"
+replace	locationname	=	"Cooper"	if 	locationname	==	"Cooperlakedam"
+replace	locationname	=	"Cooper"	if 	locationname	==	"Cooperlakestatepark"
+replace	locationname	=	"Copanobay"	if 	locationname	==	"Coponobaffin"
+replace	locationname	=	"Decker"	if 	locationname	==	"Deckerlake"
+replace	locationname	=	"Devilsriver"	if 	locationname	==	"Devrlsriver"
+replace	locationname	=	"Eaglemountain"	if 	locationname	==	"Eaglemountainlake"
+replace	locationname	=	"Eaglemountain"	if 	locationname	==	"Eaglemountian"
+replace	locationname	=	"Eaglemountain"	if 	locationname	==	"Eaglenestlake"
+replace	locationname	=	"Fairfield"	if 	locationname	==	"Fairfieldlake"
+replace	locationname	=	"Falcon"	if 	locationname	==	"Falconlake"
+replace	locationname	=	"Falcon"	if 	locationname	==	"Falconlane"
+replace	locationname	=	"Falcon"	if 	locationname	==	"Falconinternationalresevoir"
+replace	locationname	=	"Fayeteville"	if 	locationname	==	"Fayetteville"
+replace	locationname	=	"Fayeteville"	if 	locationname	==	"Fayettevillereservoir"
+replace	locationname	=	"Fayeteville"	if 	locationname	==	"Fayettville"
+replace	locationname	=	"Fayeteville"	if 	locationname	==	"Fayettvillelake"
+replace	locationname	=	"Fayeteville"	if 	locationname	==	"Fayette"
+replace	locationname	=	"Fayeteville"	if 	locationname	==	"Fayettecounty"
+replace	locationname	=	"Fayeteville"	if 	locationname	==	"Fayettecountyresevoir"
+replace	locationname	=	"Fayeteville"	if 	locationname	==	"Fayettecountyresourvor"
+replace	locationname	=	"Freeport"	if 	locationname	==	"Freeportgalveston"
+replace	locationname	=	"Freeport"	if 	locationname	==	"Freeportjetty"
+replace	locationname	=	"Georgetownlake"	if 	locationname	==	"Georgetown"
+replace	locationname	=	"Gibbonscreek"	if 	locationname	==	"Gibbonscreekreservoir"
+replace	locationname	=	"Gladewaterlake"	if 	locationname	==	"Gladewater"
+replace	locationname	=	"Gonzaleslake"	if 	locationname	==	"Gonzales"
+replace	locationname	=	"Granbury"	if 	locationname	==	"Granburylake"
+replace	locationname	=	"Granbury"	if 	locationname	==	"Grandbury"
+replace	locationname	=	"Grangelake"	if 	locationname	==	"Granger"
+replace	locationname	=	"Greenbelt"	if 	locationname	==	"Greenbeltlake"
+replace	locationname	=	"Greenbelt"	if 	locationname	==	"Greenbeltresevoir"
+replace	locationname	=	"Greenbelt"	if 	locationname	==	"Greenvilleresevoirs"
+replace	locationname	=	"Gradaluperiver"	if 	locationname	==	"Guadalupe"
+replace	locationname	=	"Gradaluperiver"	if 	locationname	==	"Guadaluperiver"
+replace	locationname	=	"Hawkinslake"	if 	locationname	==	"Hawkins"
+replace	locationname	=	"Highlandsreservoir"	if 	locationname	==	"Highlandsnorthponds"
+replace	locationname	=	"Highlandsreservoir"	if 	locationname	==	"Highlandsresevoir"
+replace	locationname	=	"Hordscreek"	if 	locationname	==	"Horoscreek"
+replace	locationname	=	"Hordscreek"	if 	locationname	==	"Hordscreeklake"
+replace	locationname	=	"Houston"	if 	locationname	==	"Houstoncounty"
+replace	locationname	=	"Houston"	if 	locationname	==	"Houstoncountylake"
+replace	locationname	=	"Hubbard"	if 	locationname	==	"Hubbardcreek"
+replace	locationname	=	"Hubbard"	if 	locationname	==	"Hubbardcreekallenhenry"
+replace	locationname	=	"Hubbard"	if 	locationname	==	"Hubbardcreeklake"
+replace	locationname	=	"Hubbard"	if 	locationname	==	"Hubbardcreekreservoir"
+replace	locationname	=	"Huntsvillepark"	if 	locationname	==	"Hunstvillestatepark"
+replace	locationname	=	"Inks"	if 	locationname	==	"Inkslake"
+replace	locationname	=	"Ivey"	if 	locationname	==	"Ivie"
+replace	locationname	=	"Ivey"	if 	locationname	==	"Iviereservoir"
+replace	locationname	=	"Ivey"	if 	locationname	==	"Ivy"
+replace	locationname	=	"Jacksboro"	if 	locationname	==	"Jacksborolake"
+replace	locationname	=	"Joepool"	if 	locationname	==	"Joepoole"
+replace	locationname	=	"Joepool"	if 	locationname	==	"Joepoollake"
+replace	locationname	=	"Ladybirdlake"	if 	locationname	==	"Ladybirdjohnsonmunicipalpark"
+replace	locationname	=	"Ladybirdlake"	if 	locationname	==	"Ladybirdjohnsonparkresevoir"
+replace	locationname	=	"Ladybirdlake"	if 	locationname	==	"Ladybirdlakeaustintx"
+replace	locationname	=	"Lagunamadre"	if 	locationname	==	"Laguna"
+replace	locationname	=	"Lagunamadre"	if 	locationname	==	"Lagunabay"
+replace	locationname	=	"Lagunamadre"	if 	locationname	==	"Lagunnamadre"
+replace	locationname	=	"Alanhenry"	if 	locationname	==	"Lakealanhenny"
+replace	locationname	=	"Alanhenry"	if 	locationname	==	"Lakealanhenry"
+replace	locationname	=	"Amistad"	if 	locationname	==	"Lakeamistad"
+replace	locationname	=	"Amoncarter"	if 	locationname	==	"Lakeamoncarter"
+replace	locationname	=	"Amoncarter"	if 	locationname	==	"Lakeamongcarter"
+replace	locationname	=	"Aquillalake"	if 	locationname	==	"Lakeaquilla"
+replace	locationname	=	"Arlington"	if 	locationname	==	"Lakearlington"
+replace	locationname	=	"Athenslake"	if 	locationname	==	"Lakeathens"
+replace	locationname	=	"Bastrop"	if 	locationname	==	"Lakebastrop"
+replace	locationname	=	"Bastrop"	if 	locationname	==	"Lakebastvp"
+replace	locationname	=	"Belton"	if 	locationname	==	"Lakebelton"
+replace	locationname	=	"Bobsandlin"	if 	locationname	==	"Lakebobsandlin"
+replace	locationname	=	"Bobsandlin"	if 	locationname	==	"Lakebobsandline"
+replace	locationname	=	"Bonham"	if 	locationname	==	"Lakebonham"
+replace	locationname	=	"Bridgeport"	if 	locationname	==	"Lakebridgeport"
+replace	locationname	=	"Bridgeport"	if 	locationname	==	"Lakebridgeportrunawaybay"
+replace	locationname	=	"Brownwood"	if 	locationname	==	"Lakebrownwood"
+replace	locationname	=	"Buchanan"	if 	locationname	==	"Lakebucannon"
+replace	locationname	=	"Buchanan"	if 	locationname	==	"Lakebuchanan"
+replace	locationname	=	"Buchanan"	if 	locationname	==	"Lakebuchannan"
+replace	locationname	=	"Caddo"	if 	locationname	==	"Lakecaddo"
+replace	locationname	=	"Calavareaslake"	if 	locationname	==	"Lakecalaveras"
+replace	locationname	=	"Cantoncitylake"	if 	locationname	==	"Lakecanton"
+replace	locationname	=	"Coleman"	if 	locationname	==	"Lakecoleman"
+replace	locationname	=	"Conroe"	if 	locationname	==	"Lakeconroe"
+replace	locationname	=	"Cooper"	if 	locationname	==	"Lakecooper"
+replace	locationname	=	"Cypresssprings"	if 	locationname	==	"Lakecypresssprings"
+replace	locationname	=	"Falcon"	if 	locationname	==	"Lakefalcon"
+replace	locationname	=	"Fayeteville"	if 	locationname	==	"Lakefayette"
+replace	locationname	=	"Fork"	if 	locationname	==	"Lakefork"
+replace	locationname	=	"Fork"	if 	locationname	==	"Lakeforkcreek"
+replace	locationname	=	"Fork"	if 	locationname	==	"Lakeforkreservoir"
+replace	locationname	=	"Georgetownlake"	if 	locationname	==	"Lakegeorgetown"
+replace	locationname	=	"Glimerlake"	if 	locationname	==	"Lakegilmer"
+replace	locationname	=	"Grahamlake"	if 	locationname	==	"Lakegraham"
+replace	locationname	=	"Granbury"	if 	locationname	==	"Lakegranbury"
+replace	locationname	=	"Granbury"	if 	locationname	==	"Lakegranbvry"
+replace	locationname	=	"Granbury"	if 	locationname	==	"Lakegrandbury"
+replace	locationname	=	"Greenbelt"	if 	locationname	==	"Lakegreenbelt"
+replace	locationname	=	"Houston"	if 	locationname	==	"Lakehouston"
+replace	locationname	=	"Houston"	if 	locationname	==	"Lakehoustondame"
+replace	locationname	=	"Houston"	if 	locationname	==	"Lakehoustondamn"
+replace	locationname	=	"Hubbard"	if 	locationname	==	"Lakehubbard"
+replace	locationname	=	"Inks"	if 	locationname	==	"Lakeinks"
+replace	locationname	=	"Ivey"	if 	locationname	==	"Lakeivie"
+replace	locationname	=	"Ivey"	if 	locationname	==	"Lakeivy"
+replace	locationname	=	"Jacksboro"	if 	locationname	==	"Lakejacksboro"
+replace	locationname	=	"Jacksonvillelake"	if 	locationname	==	"Lakejacksonvile"
+replace	locationname	=	"Jacksonvillelake"	if 	locationname	==	"Lakejacksonville"
+replace	locationname	=	"Jbthomas"	if 	locationname	==	"Lakejbthomas"
+replace	locationname	=	"Joepool"	if 	locationname	==	"Lakejoepool"
+replace	locationname	=	"Lakelavon"	if 	locationname	==	"Lakelevon"
+replace	locationname	=	"Lakelimestone"	if 	locationname	==	"Lakeliveston"
+replace	locationname	=	"Lakelimestone"	if 	locationname	==	"Lakelinestone"
+replace	locationname	=	"Lakemcclellan"	if 	locationname	==	"Lakemclellan"
+replace	locationname	=	"Lakemurval"	if 	locationname	==	"Lakemurray"
+replace	locationname	=	"Lakemurval"	if 	locationname	==	"Lakemurvaul"
+replace	locationname	=	"Lakenocona"	if 	locationname	==	"Lakeoconner"
+replace	locationname	=	"Lakeofpines"	if 	locationname	==	"Lakeofthepines"
+replace	locationname	=	"Lakeofpines"	if 	locationname	==	"Lakeofthepines`"
+replace	locationname	=	"Lakeofpines"	if 	locationname	==	"Lakeofthewoods"
+replace	locationname	=	"Ivey"	if 	locationname	==	"Lakeohivie"
+replace	locationname	=	"Lakeofpines"	if 	locationname	==	"Lakeopine"
+replace	locationname	=	"Lakeofpines"	if 	locationname	==	"Lakeopines"
+replace	locationname	=	"Lakeofpines"	if 	locationname	==	"Lakeothepines"
+replace	locationname	=	"Lakepalestine"	if 	locationname	==	"Lakepalestinetx"
+replace	locationname	=	"Lakerayhubbad"	if 	locationname	==	"Lakerayhubbard"
+replace	locationname	=	"Lakerayroberts"	if 	locationname	==	"Lakeroberts"
+replace	locationname	=	"Lakesomerville"	if 	locationname	==	"Lakesomervillebelowdam"
+replace	locationname	=	"Lakesomerville"	if 	locationname	==	"Lakesomeville"
+replace	locationname	=	"Lakesomerville"	if 	locationname	==	"Lakesommerville"
+replace	locationname	=	"Laketawakine"	if 	locationname	==	"Laketawakoni"
+replace	locationname	=	"Laketawakine"	if 	locationname	==	"Laketawokani"
+replace	locationname	=	"Laketawakine"	if 	locationname	==	"Laketawokoni"
+replace	locationname	=	"Laketexana"	if 	locationname	==	"Laketexananavidadriver"
+replace	locationname	=	"Laketexana"	if 	locationname	==	"Laketexanastatepark"
+replace	locationname	=	"Laketexana"	if 	locationname	==	"Laketexarkana"
+replace	locationname	=	"Laketexhoma"	if 	locationname	==	"Laketexoma"
+replace	locationname	=	"Laketexhoma"	if 	locationname	==	"Laketexome"
+replace	locationname	=	"Laketyler"	if 	locationname	==	"Laketylereast"
+replace	locationname	=	"LakewoodGonzalestx"	if 	locationname	==	"Lakewood"
+replace	locationname	=	"LakewoodGonzalestx"	if 	locationname	==	"Lakewoodgonzalestx"
+replace	locationname	=	"Lakewrightpatman"	if 	locationname	==	"Lakewrightpatrontn"
+replace	locationname	=	"Lakeofpines"	if 	locationname	==	"Landopines"
+replace	locationname	=	"Lakelavon"	if 	locationname	==	"Lavon"
+replace	locationname	=	"Lakelavon"	if 	locationname	==	"Lavondam"
+replace	locationname	=	"Lakelavon"	if 	locationname	==	"Lavonlake"
+replace	locationname	=	"Lakelbj"	if 	locationname	==	"Lbj"
+replace	locationname	=	"Lakelbj"	if 	locationname	==	"Lbjlake"
+replace	locationname	=	"Laketravis"	if 	locationname	==	"Lketravis"
+replace	locationname	=	"Mouthofsanbernardriver"	if 	locationname	==	"Mouthbernard"
+replace	locationname	=	"Lakemurval"	if 	locationname	==	"Mruvaul"
+replace	locationname	=	"Lakemurval"	if 	locationname	==	"Murval"
+replace	locationname	=	"Lakemurval"	if 	locationname	==	"Murvaul"
+replace	locationname	=	"Lakenacogdoches"	if 	locationname	==	"Nacogdoches"
+replace	locationname	=	"Navarro"	if 	locationname	==	"Navarromills"
+replace	locationname	=	"Neches"	if 	locationname	==	"Nechesriver"
+replace	locationname	=	"Neches"	if 	locationname	==	"Nuecesriver"
+replace	locationname	=	"Oakcreek"	if 	locationname	==	"Oakcreeklake"
+replace	locationname	=	"Ocfisherlake"	if 	locationname	==	"Ocfishernasworthy"
+replace	locationname	=	"Ivey"	if 	locationname	==	"Ohivey"
+replace	locationname	=	"Ivey"	if 	locationname	==	"Ohivie"
+replace	locationname	=	"Palodurolake"	if 	locationname	==	"Paloduro"
+replace	locationname	=	"Pathayes"	if 	locationname	==	"Patmayes"
+replace	locationname	=	"Pathayes"	if 	locationname	==	"Patmayse"
+replace	locationname	=	"Pathayes"	if 	locationname	==	"Patmayselake"
+replace	locationname	=	"Lowerpecosriver"	if 	locationname	==	"Pecosriver"
+replace	locationname	=	"Pedernales"	if 	locationname	==	"Pedeneralesriver"
+replace	locationname	=	"Pedernales"	if 	locationname	==	"Pedernalesriver"
+replace	locationname	=	"Lakeofpines"	if 	locationname	==	"Pines"
+replace	locationname	=	"Portanoaraspass"	if 	locationname	==	"Portaransas"
+replace	locationname	=	"Portanoaraspass"	if 	locationname	==	"Portaransasarea"
+replace	locationname	=	"Portanoaraspass"	if 	locationname	==	"Portaransasbay"
+replace	locationname	=	"Portanoaraspass"	if 	locationname	==	"Portaransasbaygulfoutofingleside"
+replace	locationname	=	"Portanoaraspass"	if 	locationname	==	"Portaransasgulf"
+replace	locationname	=	"Portanoaraspass"	if 	locationname	==	"Portaransasjetty"
+replace	locationname	=	"Portanoaraspass"	if 	locationname	==	"Portaransaspass"
+replace	locationname	=	"Portanoaraspass"	if 	locationname	==	"Portaransastx"
+replace	locationname	=	"Portanoaraspass"	if 	locationname	==	"Portarkansas"
+replace	locationname	=	"Portlavaca"	if 	locationname	==	"Portlavacabay"
+replace	locationname	=	"Portoconner"	if 	locationname	==	"Portoconnerjettes"
+replace	locationname	=	"Portoconner"	if 	locationname	==	"Portoconnor"
+replace	locationname	=	"Portoconner"	if 	locationname	==	"Portoconnorjetty"
+replace	locationname	=	"Possumkingdom"	if 	locationname	==	"Possumkindom"
+replace	locationname	=	"Possumkingdom"	if 	locationname	==	"Possumkingdomlake"
+replace	locationname	=	"Lakeproctor"	if 	locationname	==	"Proctor"
+replace	locationname	=	"Lakeproctor"	if 	locationname	==	"Proctorlake"
+replace	locationname	=	"Lakesamrayburn"	if 	locationname	==	"Rayburn"
+replace	locationname	=	"Lakesamrayburn"	if 	locationname	==	"Rayburnlake"
+replace	locationname	=	"Lakesamrayburn"	if 	locationname	==	"Rayburntoleodbend"
+replace	locationname	=	"Lakerayhubbad"	if 	locationname	==	"Rayhubard"
+replace	locationname	=	"Lakerayhubbad"	if 	locationname	==	"Rayhubbard"
+replace	locationname	=	"Redriver"	if 	locationname	==	"Redrivertexoma"
+replace	locationname	=	"Lakerichlandchambers"	if 	locationname	==	"Richalndchambers"
+replace	locationname	=	"Lakerichlandchambers"	if 	locationname	==	"Richardchambers"
+replace	locationname	=	"Lakerichlandchambers"	if 	locationname	==	"Richlandchamberlake"
+replace	locationname	=	"Lakerichlandchambers"	if 	locationname	==	"Richlandchambers"
+replace	locationname	=	"Lakerichlandchambers"	if 	locationname	==	"Richlandchamberslake"
+replace	locationname	=	"Lakerichlandchambers"	if 	locationname	==	"Richlandchambersres"
+replace	locationname	=	"Lakerichlandchambers"	if 	locationname	==	"Richlandchambersreservoir"
+replace	locationname	=	"Rockpont"	if 	locationname	==	"Rockport"
+replace	locationname	=	"Rockpont"	if 	locationname	==	"Rockportaransasportmansfield"
+replace	locationname	=	"Rockpont"	if 	locationname	==	"Rockportportaransas"
+replace	locationname	=	"Rockpont"	if 	locationname	==	"Rockportportmansfield"
+replace	locationname	=	"Lakeproctor"	if 	locationname	==	"Roctorlake"
+replace	locationname	=	"RollOverpass"	if 	locationname	==	"Rolloverpass"
+replace	locationname	=	"RollOverpass"	if 	locationname	==	"Rolloverpassgalvestonco"
+replace	locationname	=	"Rockpont"	if 	locationname	==	"Rookport"
+replace	locationname	=	"Lakesabine"	if 	locationname	==	"Sabine"
+replace	locationname	=	"Lakesabine"	if 	locationname	==	"Sabinelake"
+replace	locationname	=	"Lakesabine"	if 	locationname	==	"Sabineorlittlecyress"
+replace	locationname	=	"Lakesabine"	if 	locationname	==	"Sabinepass"
+replace	locationname	=	"Lakesamrayburn"	if 	locationname	==	"Samrayburn"
+replace	locationname	=	"Lakesamrayburn"	if 	locationname	==	"Samrayburnlake"
+replace	locationname	=	"Sanantoniabay"	if 	locationname	==	"Sanantoniobay"
+replace	locationname	=	"Bobsandlin"	if 	locationname	==	"Sandlin"
+replace	locationname	=	"Sangabriel"	if 	locationname	==	"Sangabrielriver"
+replace	locationname	=	"Sanjacinotriver"	if 	locationname	==	"Sanjacintoriver"
+replace	locationname	=	"Sanjacinotriver"	if 	locationname	==	"Sanjacintoriverbehindlakehouston"
+replace	locationname	=	"Sanjacinotriver"	if 	locationname	==	"Sanjack"
+replace	locationname	=	"Sanjacinotriver"	if 	locationname	==	"Sanjacriver"
+replace	locationname	=	"Sanmarcosriver"	if 	locationname	==	"Sanmarcos"
+replace	locationname	=	"Sheldonlake"	if 	locationname	==	"Sheldon"
+replace	locationname	=	"Lakesomerville"	if 	locationname	==	"Somerville"
+replace	locationname	=	"Lakesomerville"	if 	locationname	==	"Somervillelake"
+replace	locationname	=	"Lakesomerville"	if 	locationname	==	"Sommervillelake"
+replace	locationname	=	"Bosque"	if 	locationname	==	"Southbosqueriver"
+replace	locationname	=	"Southllanoriverstatepark"	if 	locationname	==	"Southllamo"
+replace	locationname	=	"Southpadre"	if 	locationname	==	"Southpadreisland"
+replace	locationname	=	"Southpadre"	if 	locationname	==	"Southpadreislandbay"
+replace	locationname	=	"Southpadre"	if 	locationname	==	"Spadreisland"
+replace	locationname	=	"Springcreek"	if 	locationname	==	"Springcreeksanangelotx"
+replace	locationname	=	"Squawcreekresevoir"	if 	locationname	==	"Squawcreek"
+replace	locationname	=	"Lakestamford"	if 	locationname	==	"Stamfordlake"
+replace	locationname	=	"Lakestamford"	if 	locationname	==	"Stamfordtx"
+replace	locationname	=	"Lakestamford"	if 	locationname	==	"Stanford"
+replace	locationname	=	"Lakestamford"	if 	locationname	==	"Stanfordlake"
+replace	locationname	=	"Stillhouse"	if 	locationname	==	"Stillhousehollow"
+replace	locationname	=	"Stillhouse"	if 	locationname	==	"Stillhousehollowlake"
+replace	locationname	=	"Stillhouse"	if 	locationname	==	"Stillhousehollowreservoir"
+replace	locationname	=	"Stillhouse"	if 	locationname	==	"Stillhouselakelampasasriver"
+replace	locationname	=	"Lakesomerville"	if 	locationname	==	"Summerville"
+replace	locationname	=	"Laketawakine"	if 	locationname	==	"Takowani"
+replace	locationname	=	"Laketawakine"	if 	locationname	==	"Tawakani"
+replace	locationname	=	"Laketawakine"	if 	locationname	==	"Tawakoni"
+replace	locationname	=	"Laketawakine"	if 	locationname	==	"Tawankni"
+replace	locationname	=	"Laketawakine"	if 	locationname	==	"Tawokonilake"
+replace	locationname	=	"Laketexhoma"	if 	locationname	==	"Texhoma"
+replace	locationname	=	"Laketexhoma"	if 	locationname	==	"Texoma"
+replace	locationname	=	"Lakeofpines"	if 	locationname	==	"Thepines"
+replace	locationname	=	"Easttoledobend"	if 	locationname	==	"Toldeobend"
+replace	locationname	=	"Easttoledobend"	if 	locationname	==	"Toledo"
+replace	locationname	=	"Easttoledobend"	if 	locationname	==	"Toledobend"
+replace	locationname	=	"Easttoledobend"	if 	locationname	==	"Toledobendlake"
+replace	locationname	=	"Easttoledobend"	if 	locationname	==	"Toledobendreservoir"
+replace	locationname	=	"Easttoledobend"	if 	locationname	==	"Toledobendtx"
+replace	locationname	=	"Laketawakine"	if 	locationname	==	"Towanka"
+replace	locationname	=	"Laketawakine"	if 	locationname	==	"Towokonilake"
+replace	locationname	=	"Tradehouselake"	if 	locationname	==	"Tradinghousecreek"
+replace	locationname	=	"Trinityriver"	if 	locationname	==	"Trintiyriver"
+replace	locationname	=	"Trinityriver"	if 	locationname	==	"Trintyriver"
+replace	locationname	=	"Lakewichita"	if 	locationname	==	"Wichita"
+replace	locationname	=	"Wolfcreekparkonlakelivingston"	if 	locationname	==	"Wolfcreekpark"
+replace	locationname	=	"Lakewrightpatman"	if 	locationname	==	"Wrightpatman"
+replace	locationname	=	"Lakewrightpatman"	if 	locationname	==	"Wrightpatmanlake"
+
+// Rename station numbers
+rename	monitoringstations	s1
+rename	station1	s2
+rename	station2	s3
+rename	station3	s4
+rename	station4	s5
+rename	station5	s6
+rename	station6	s7
+rename	station7	s8
+rename	station8	s9
+rename	station9	s10
+rename	station10	s11
+rename	station11	s12
+rename	station12	s13
+rename	station13	s14
+rename	station14	s15
+rename	station15	s16
+rename	station16	s17
+rename	station17	s18
+rename	station18	s19
+rename	station19	s20
+rename	station20	s21
+rename	station21	s22
+rename	station22	s23
+drop todo
+
+// Rename key variables
+rename locationname loc
+rename gpscoordinates gps
+
+// Drop observations
+drop if missing(gps)
+drop if missing(s1)
+
+/*
+*Now I create a temp dataset for merging locations much later in estimation
+preserve
+keep loc gps
+rename loc wherein
+save "/Volumes/GoogleDrive/My Drive/Research/Ditton Data 1989-2009/Estimation/fishloctotalname.dta", replace
+restore
+*/
+
+// Create a dataset that contains just GPS coordinates for all fishing locations, and give each location an ID
+preserve
+drop loc s1 s2 s3 s4 s5 s6 s7 s8 s9 s10 s11 s12 s13 s14 s15 s16 s17 s18 s19 s20 s21 s22 s23
+sort gps
+duplicates drop
+gen gpsid=_n
+save "`temp_path'/fishgps.dta", replace
+restore
+
+// Now merge with fishgps to get a unique id number for each fishing location
+merge m:1 gps using "`temp_path'/fishgps.dta"
+drop _merge
+order loc gps gpsid
+
+*Before reshaping into long, we need to get rid of duplicate gpsid
+sort gpsid
+duplicates drop gpsid, force
+
+*Now convert wide form to long form
+reshape long s, i(gpsid) j(stat)
+
+*Now make sure variable names are not ambiguous
+rename stat snum
+rename s sid
+
+*Now drop missing variables in sid
+drop if missing(sid)
+save "`output_path'/FishLoc.dta", replace
