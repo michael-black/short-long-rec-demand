@@ -21,3 +21,12 @@ We suggest the following folder structure for your replication:
 |  | | Specify Water Quality Data.do |
 |  | | Adding USGS Water Quality data.R |
 |  | | Create final dataset.do |
+| Analysis | Output | (Output appears here)
+|  | Code | Final Conditional Logit.do |
+|  | | Final WTP Bootstrap.do |
+|  | Temp | (Temporary folder) |
+
+#### Replication Approach:
+1. Build all files in the Build/Code folder
+2. Estimate all model versions and WTP across anglers using "Analysis/Code/Final Conditional Logit.do"
+3. Estimate bootstrapped WTP confidence intervals using "Analysis/Code/Final WTP Bootstrap.do"
