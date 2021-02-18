@@ -1,3 +1,10 @@
+# Create maps and water quality figures
+figure no. | code filename |
+| --- | --- |
+| 2 | Short-term_Water_Quality_Figure.R |
+| 3 | Long-term_Water_Quality_Figure.R |
+| 4 | Map_of_Welfare_Simulation.R |
+
 # Summary of Final Model Runs
 
 ## Typical Trip

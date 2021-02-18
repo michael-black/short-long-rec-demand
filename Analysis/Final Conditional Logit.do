@@ -1148,8 +1148,7 @@ append using "`temp_path'/tt9"
 
 save "`output_path'/wtp_anglers.dta", replace
 
-// You can try to plot the densities here, but R is FAR SUPERIOR.
-// Stata, for example, cannot easily truncate a figure to not plot outliers. Come on.
+// Plot densities here
 /*
 kdensity st_wtp if run==1, addplot(kdensity st_wtp if run==2 || ///
 			kdensity st_wtp if run==4 || ///

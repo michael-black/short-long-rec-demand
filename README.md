@@ -24,6 +24,9 @@ We suggest the following folder structure for your replication:
 | Analysis | Output | (Output appears here)
 |  | Code | Final Conditional Logit.do |
 |  | | Final WTP Bootstrap.do |
+|  | | Long-term_Water_Quality_Figure.R |
+|  | | Map_of_Welfare_Simulation.R |
+|  | | Short-term_Water_Quality_Figure.R |
 |  | Temp | (Temporary folder) |
 
 #### Replication Approach:

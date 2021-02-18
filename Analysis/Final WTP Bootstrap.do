@@ -3,7 +3,7 @@
 /*
 
 Set input path to Build/Output
-Set optional local path. I did this to avoid pulling from the cloud for hours.
+Set optional local path.
 
 */
 
