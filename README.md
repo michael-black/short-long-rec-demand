@@ -1,4 +1,4 @@
-# Replicate Black and Woodward (Working Paper, 2020): The value of long and short term changes in water quality
+# Replicate Black and Woodward (Working Paper, 2021): The value of long and short term changes in water quality
 
 This repository allows users to reproduce the results of Black and Woodward (Working Paper, 2021). Working paper available upon request; please direct working paper requests to [mblack438@gmail.com](mailto:mblack438@gmail.com). In the working paper, we estimate a demand model of recreation as a function of water quality that varies over time, *and* water quality that varies only over space.
 
